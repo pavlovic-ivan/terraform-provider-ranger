@@ -1,36 +1,44 @@
-# Visit https://golangci-lint.run/ for usage documentation
-# and information on other useful linters
+# Copyright (c) HashiCorp, Inc.
 
-run:
-  deadline: 3m
-  modules-download-mode: vendor
-
-issues:
-  max-per-linter: 0
-  max-same-issues: 0
-
+version: "2"
 linters:
-  disable-all: true
+  default: none
   enable:
+    - copyloopvar
     - durationcheck
     - errcheck
-    - exportloopref
-    # - forcetypeassert
-    # - godot
-    - gofmt
-    - gosimple
+    - forcetypeassert
+    - godot
     - ineffassign
     - makezero
     - misspell
-    # - nilerr
-    # - predeclared
+    - nilerr
+    - predeclared
     - staticcheck
-    - tenv
     - unconvert
-    # - unparam
+    - unparam
     - unused
-    - vet
-
-linters-settings:
-  errcheck:
-    ignore: github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema:ForceNew|Set,fmt:.*,io:Close
+    - usetesting
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+formatters:
+  enable:
+    - gofmt
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
