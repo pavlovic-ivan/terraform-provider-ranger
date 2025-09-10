@@ -1,6 +1,8 @@
 # Copyright (c) HashiCorp, Inc.
 
-version: "2"
+run:
+  deadline: 3m
+  modules-download-mode: vendor
 linters:
   default: none
   enable:
